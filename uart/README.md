@@ -1,7 +1,7 @@
 UART Library for AVR
 ====================
 
-Written by Michal Belica [devel (at) beli (dot) sk]
+Written by Michal Belica `devel (at) beli (dot) sk`
 
 Inspired by blog post [Simple Serial Communications With AVR Libc](http://www.appelsiini.net/2011/simple-usart-with-avr-libc) by Mika Tuupola.
 
