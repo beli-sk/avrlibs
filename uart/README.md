@@ -7,7 +7,7 @@ Inspired by blog post [Simple Serial Communications With AVR Libc](http://www.ap
 
 Usage example:
 
-'''
+```
 #define F_CPU 8000000UL
 #define BAUD 9600
 #include "uart.h"
@@ -20,4 +20,4 @@ int main(void) {
 	puts("Hello world!");
 	// ...
 }
-'''
+```
