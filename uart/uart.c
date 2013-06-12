@@ -24,8 +24,8 @@
 
 #define CONVERT_CRLF 1
 
-char uart_getchar(FILE *stream);
-char uart_putchar(char c, FILE *stream);
+int uart_getchar(FILE *stream);
+int uart_putchar(char c, FILE *stream);
 
 FILE uart_io = FDEV_SETUP_STREAM(uart_putchar, uart_getchar, _FDEV_SETUP_RW);
 
@@ -42,7 +42,7 @@ void uart_init(void) {
 	UCSR0B = _BV(RXEN0) | _BV(TXEN0);
 }
 
-char uart_putchar(char c, FILE *stream) {
+int uart_putchar(char c, FILE *stream) {
 #ifdef CONVERT_CRLF
 	if( c == '\n' ) {
 		uart_putchar('\r', stream);
@@ -50,11 +50,11 @@ char uart_putchar(char c, FILE *stream) {
 #endif
 	loop_until_bit_is_set(UCSR0A, UDRE0);
 	UDR0 = c;
-	return c;
+	return (int)c;
 }
 
-char uart_getchar(FILE *stream) {
-	char c;
+int uart_getchar(FILE *stream) {
+	unsigned char c;
 	loop_until_bit_is_set(UCSR0A, RXC0);
 	c = UDR0;
 #ifdef CONVERT_CRLF
@@ -62,5 +62,5 @@ char uart_getchar(FILE *stream) {
 		c = '\n';
 	}
 #endif
-	return c;
+	return (int)c;
 }
